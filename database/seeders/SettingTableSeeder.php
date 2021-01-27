@@ -10,8 +10,8 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
         DB::table('settings')->insert([
-            'primary_color' => 'blue',
-            'secondary_color' => 'purple',
+            'primary_color' => 'purple',
+            'secondary_color' => 'azure',
             'created_at' => now(),
             'updated_at' => now()
         ]);
