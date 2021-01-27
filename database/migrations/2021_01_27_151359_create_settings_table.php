@@ -10,7 +10,8 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('color');
+            $table->string('primary_color');
+            $table->string('secondary_color');
             $table->timestamps();
         });
     }
