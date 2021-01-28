@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -40,12 +41,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+	
+	Route::get('profile',[ProfileController::class,'edit'])->name('profile.edit');
+	Route::post('update-profile/{name}/{email}',[ProfileController::class,'changeNameEmail'])->name('update-profile');
+	Route::get('check-password/{password}',[ProfileController::class,'checkPassword'])->name('check-password');
+	Route::post('change-password/{password}',[ProfileController::class,'changePassword'])->name('change-password');
 
-	Route::get('check-password/{password}',[SettingController::class,'checkPassword'])->name('check-password');
-	Route::get('change-password/{password}',[SettingController::class,'changePassword'])->name('change-password');
-
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+	
 });
 

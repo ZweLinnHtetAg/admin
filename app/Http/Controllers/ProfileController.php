@@ -6,41 +6,36 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 class ProfileController extends Controller
 {
-    /**
-     * Show the form for editing the profile.
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function edit()
     {
         return view('profile.edit');
     }
 
-    /**
-     * Update the profile
-     *
-     * @param  \App\Http\Requests\ProfileRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(ProfileRequest $request)
+    public function checkPassword($password)
     {
-        auth()->user()->update($request->all());
+        if (Hash::check($password, Auth::user()->password)) 
+            $flag = "true";
+        else 
+            $flag = "false";
 
-        return back()->withStatus(__('Profile successfully updated.'));
+        return $flag;
     }
 
-    /**
-     * Change the password
-     *
-     * @param  \App\Http\Requests\PasswordRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function password(PasswordRequest $request)
+    public function changeNameEmail($name,$email)
     {
-        auth()->user()->update(['password' => Hash::make($request->get('password'))]);
+        Auth()->user()->update(['name'=>$name,'email'=>$email]);
+        return response()->json(['success' => "Profile is updated"], 200);
+    }
 
-        return back()->withStatusPassword(__('Password successfully updated.'));
+    public function changePassword($password)
+    {
+        Auth()->user()->update(['password' => Hash::make($password)]);
+        return response()->json(['success' => "Password is updated"], 201);  
     }
 }

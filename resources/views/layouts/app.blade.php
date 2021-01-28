@@ -18,6 +18,8 @@
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
     </head>
     <body class="{{ $class ?? '' }}">
+        
+      <div id="app">
         @auth()
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
@@ -27,6 +29,7 @@
         @guest()
           @include('layouts.page_templates.guest')
         @endguest
+      </div> 
         @if (auth()->check())
         <div class="fixed-plugin">
           <div class="dropdown show-dropdown">
@@ -82,10 +85,13 @@
         </div>
         @endif
 
-        <script src="{{ asset('js/app.js') }}"></script>
+        
         <!--   Core JS Files   -->
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
+        <script>
+          $.material.init();
+        </script>
         <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>
         <script src="{{ asset('material') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
         <!-- Plugin for the momentJs  -->
@@ -127,6 +133,8 @@
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="{{ asset('material') }}/demo/demo.js"></script>
         <script src="{{ asset('material') }}/js/settings.js"></script>
+
+        <script src="{{ asset('js/app.js') }}"></script>
         @stack('js')
     </body>
 </html>
