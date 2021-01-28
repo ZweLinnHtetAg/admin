@@ -81,6 +81,8 @@
           </div>
         </div>
         @endif
+
+        <script src="{{ asset('js/app.js') }}"></script>
         <!--   Core JS Files   -->
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
