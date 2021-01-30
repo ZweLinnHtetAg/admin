@@ -23,5 +23,12 @@
         "vue": "^2.5.17",
         "vue-loader": "^15.9.6",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "v-title": "^1.0.13",
+        "vform": "^1.0.1",
+        "vue-disable-autocomplete": "0.0.4",
+        "vue-loading-overlay": "^3.4.2",
+        "vue-moments-ago": "^0.2.0"
     }
 }

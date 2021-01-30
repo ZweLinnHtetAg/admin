@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -40,13 +41,17 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	
+	Route::resource('user',App\Http\Controllers\UserController::class);
+	Route::get('getUsers',[App\Http\Controllers\UserController::class,'getUsers']);
+	Route::get('emailCheck/{email}',[App\Http\Controllers\UserController::class,'emailCheck']);
+
 	Route::get('profile',[ProfileController::class,'edit'])->name('profile.edit');
 	Route::post('update-profile/{name}/{email}',[ProfileController::class,'changeNameEmail'])->name('update-profile');
 	Route::get('check-password/{password}',[ProfileController::class,'checkPassword'])->name('check-password');
 	Route::post('change-password/{password}',[ProfileController::class,'changePassword'])->name('change-password');
 
+	Route::get('mail',[MailController::class,'index'])->name('mail');
+	Route::post('sendMail',[MailController::class,'send'])->name('send.mail');
 	
 });
 

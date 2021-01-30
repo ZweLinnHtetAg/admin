@@ -3,7 +3,7 @@
 @section('content')
   <div class="content">
     <div class="container-fluid">
-      <user-edit-component userName="{{ Auth::user()->name }}" email="{{ Auth::user()->email }}" /> 
+      <profile-edit-component userName="{{ Auth::user()->name }}" email="{{ Auth::user()->email }}" /> 
     </div>
   </div>
 @endsection

@@ -8,14 +8,24 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the users
-     *
-     * @param  \App\Models\User  $model
-     * @return \Illuminate\View\View
-     */
-    public function index(User $model)
+    public function index()
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        return view('users.index');
+    }
+
+    public function getUsers()
+    {
+        return User::all();
+    }
+
+    public function emailCheck($email)
+    {
+        if(count(User::where('email',$email)->get()) == 0)
+        {
+            return response()->json(['status' => true], 200);
+        }
+        else 
+        
+        return response()->json(['status' => false], 200);
     }
 }

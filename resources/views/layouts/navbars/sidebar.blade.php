@@ -17,7 +17,12 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      
+      <li class="nav-item{{ $activePage == 'mail' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('mail') }}">
+          <i class="material-icons">mail_outline</i>
+            <p>{{ __('Send Mail') }}</p>
+        </a>
+      </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/setting.png"></i>
@@ -25,7 +30,7 @@
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse show" id="setting">
+        <div class="collapse {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' show' : '' }}" id="setting">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('profile.edit') }}">
@@ -49,14 +54,14 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item {{ ($activePage == 'development' ) ? ' active' : '' }}">
+      <li class="nav-item {{ ($activePage == 'table' || $activePage == 'typography' || $activePage == 'icons' || $activePage == 'map' || $activePage == 'notifications') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#development" aria-expanded="true">
           <i class="material-icons">integration_instructions</i>
           <p>{{ __('Development') }}
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse" id="development">
+        <div class="collapse {{ ($activePage == 'table' || $activePage == 'typography' || $activePage == 'icons' || $activePage == 'map' || $activePage == "notifications") ? ' show' : '' }}" id="development">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('table') }}">

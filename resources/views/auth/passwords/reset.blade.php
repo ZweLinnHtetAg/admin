@@ -9,10 +9,10 @@
 
         <input type="hidden" name="token" value="{{ $token }}">
         <div class="card card-login card-hidden mb-3">
-          <div class="card-header card-header-primary text-center">
+          <div class="card-header card-header-info text-center">
             <h4 class="card-title"><strong>{{ __('Reset Password') }}</strong></h4>
           </div>
-          <div class="card-body ">
+          <div class="card-body mt-3">
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }} mt-3">
               <div class="input-group">
                 <div class="input-group-prepend">
